@@ -1,0 +1,16 @@
+{
+  "name": "realtime-twitter",
+  "subdomain": "bucifer-realtime-twitter",
+  "scripts": {
+    "start": "node twitter_server.js"
+  },
+  "version": "0.0.0-7",
+  "engines": {
+    "node": "0.10.x"
+  },
+  "dependencies": {
+    "socket.io": "1.0.x",
+    "express": "4.7.x",
+    "ntwitter": "0.5.x"
+  }
+}

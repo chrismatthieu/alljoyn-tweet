@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Real-time naruto tweets</title>
+	<script src="/socket.io/socket.io.js"></script>
+	<link rel="stylesheet" type="text/css" href="/styles.css">
+</head>
+<body>
+<h1>Real-Time #Naruto Tweets (Twitter Streaming API, Node.js, Express and Socket.io)</h1>
+
+<p> <span id="count">Wait for it .... </span> </p>
+
+<ul id="tweets">
+	
+</ul>
+
+<script type="text/javascript">
+			window.counter = 0;
+			var socket = io.connect();	
+			var ul = document.getElementById("tweets");
+			socket.on('tweet', function (tweet) {
+				window.counter += 1;
+				var span = document.getElementById("count");
+				span.innerHTML = "Currently " + window.counter.toString() + " people just tweeted about #Naruto" ;
+
+				var li = document.createElement("li");
+				li.innerHTML = "<strong>" + tweet.user.screen_name + ": </strong> " + tweet.text;
+				ul.insertBefore(li, ul.getElementsByTagName("li")[0]);
+			});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+h1 {
+	text-shadow: 5px 5px 10px orange;
+	font-size: 2.5em;
+}
+
+p {
+	font-size:  1.5em;
+}
+
+ul {
+	border: 1px solid black;
+	list-style-image: url('twitter.png');
+}
+
+li {
+	border-bottom: 1px solid black;
+	padding: 5px;
+}
+
+li:nth-child(even) {
+	background-color: lightgrey;
+}
