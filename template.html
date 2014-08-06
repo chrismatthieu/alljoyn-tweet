@@ -32,15 +32,22 @@
 			});
 			socket.on('ending', function(data) {
 				var span = document.getElementById("count");
+				if (window.counter > 0) {
 				span.innerHTML = "Let's stop at these " + window.counter.toString() + " tweets ... or Twitter gets angry and shuts this down if we stream too long -_-;";
+				}
+				else {
+				span.innerHTML = "Nobody tweeted anything in the last 20 seconds ... -_-; That's sad. Try refreshing!";
+				}
 				var p = document.getElementById("goodbye");
 				p.innerHTML = "Thanks for visiting! Refresh to play again"
+  				var timer = document.getElementById("timer");
+  				timer.outerHTML = "";
 			});
 </script>
 
 <script type="text/javascript">
 var count = 20;
-var counterSet = setInterval(timer, 1000); //1000 will run the timer function every second
+var counterSet = setInterval(timer,1000);
 function timer() {
   count = count-1;
   var timer = document.getElementById("timer");
@@ -56,8 +63,8 @@ function timer() {
 	if (count <= 0) { 
 	  clearInterval(counterSet);
 	  timer.innerHTML = "Timed-Out.";
-	  timer.outerHTML = "";
- 	  return; }
+ 	  return; 
+ 	}
 }
 
 </script>

@@ -38,7 +38,7 @@ twit.stream('statuses/filter', { track: ['naruto'] }, function(stream) {
   stream.on('error', function(error ,code) {
     console.log("My error: " + error + ": " + code);
   });
-  // Disconnect stream after five seconds
+  // Disconnect stream after -- seconds
   var myTimeOut = 21000;
   setTimeout(stream.destroy, myTimeOut);
 });
