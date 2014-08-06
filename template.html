@@ -14,6 +14,9 @@
 	
 </ul>
 
+<p id="timer"></p>
+<p id="goodbye"></p>
+
 <script type="text/javascript">
 			window.counter = 0;
 			var socket = io.connect();	
@@ -21,12 +24,42 @@
 			socket.on('tweet', function (tweet) {
 				window.counter += 1;
 				var span = document.getElementById("count");
-				span.innerHTML = "Currently " + window.counter.toString() + " people just tweeted about #Naruto" ;
+				span.innerHTML = "At this moment in the world, " + window.counter.toString() + " people are tweeting about #Naruto" ;
 
 				var li = document.createElement("li");
 				li.innerHTML = "<strong>" + tweet.user.screen_name + ": </strong> " + tweet.text;
 				ul.insertBefore(li, ul.getElementsByTagName("li")[0]);
 			});
+			socket.on('ending', function(data) {
+				var span = document.getElementById("count");
+				span.innerHTML = "Let's stop at these " + window.counter.toString() + " tweets ... or Twitter gets angry and shuts this down if we stream too long -_-;";
+				var p = document.getElementById("goodbye");
+				p.innerHTML = "Thanks for visiting! Refresh to play again"
+			});
+</script>
+
+<script type="text/javascript">
+var count = 20;
+var counterSet = setInterval(timer, 1000); //1000 will run the timer function every second
+function timer() {
+  count = count-1;
+  var timer = document.getElementById("timer");
+  if (count >= 10) {
+  	  timer.innerHTML= "0:" + count + " seconds left until auto-timeout"; 
+  }
+  else if (count == 1) {
+  	  	timer.innerHTML = count + " second left until auto-timeout";
+  }
+  else {
+  	timer.innerHTML = count + " seconds left until auto-timeout";
+  }
+	if (count <= 0) { 
+	  clearInterval(counterSet);
+	  timer.innerHTML = "Timed-Out.";
+	  timer.outerHTML = "";
+ 	  return; }
+}
+
 </script>
 
 </body>
