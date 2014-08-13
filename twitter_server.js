@@ -26,20 +26,25 @@ var io = require('socket.io').listen(server);
 
 app.use(express.static(__dirname + '/public'));
 
+var count = 0;
 twit.stream('statuses/filter', { track: ['naruto'] }, function(stream) {
   stream.on('data', function (tweet) {
-  	console.log("working...");
+  	console.log("Passed a tweet to Socket IO");
+    count += 1;
+    console.log(count);
   	io.sockets.emit("tweet", tweet);
-  });
+    if (count >= 25) {
+      console.log("Stop twit stream since count >= 25");
+      stream.destroy();
+    }
+  }); 
   stream.on('end', function() {
   	console.log("Disconnected");
-  	io.sockets.emit('ending', {message: 'test'});
+  	io.sockets.emit('ending', {message: 'OVERAGE'});
   });
   stream.on('error', function(error ,code) {
     console.log("My error: " + error + ": " + code);
   });
-  // Disconnect stream after -- seconds
-  var myTimeOut = 21000;
-  setTimeout(stream.destroy, myTimeOut);
 });
+
 
