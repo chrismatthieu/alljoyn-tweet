@@ -32,10 +32,10 @@ twit.stream('statuses/filter', { track: ['naruto'] }, function(stream) {
     count += 1;
     console.log(count);
   	io.sockets.emit("tweet", tweet);
-    if (count >= 25) {
-      console.log("Stop twit stream since count >= 25");
-      stream.destroy();
-    }
+    // if (count >= 25) {
+    //   console.log("Stop twit stream since count >= 25");
+    //   stream.destroy();
+    // }
   }); 
   stream.on('end', function() {
   	console.log("Disconnected");
