@@ -9,8 +9,7 @@
     "node": "0.10.x"
   },
   "dependencies": {
-    "socket.io": "1.0.x",
-    "express": "4.7.x",
+    "skynet": "*",
     "ntwitter": "0.5.x"
   }
 }
